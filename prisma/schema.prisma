@@ -42,13 +42,10 @@ model Category {
 model Bill {
   id            Int      @id @default(autoincrement())
   total         Int
-  change        Int
-  payment_amount Int
-  menu_id       Int
   drawer_id     Int
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
-  items         Item[]   @relation("BillItems")
+  items          Json
 }
 
 model Menu {
@@ -62,18 +59,14 @@ model Menu {
   updatedAt  DateTime @updatedAt
   user       User     @relation("UserMenus", fields: [user_id], references: [id])
   category   Category @relation("CategoryMenus", fields: [category_id], references: [id])
-  items      Item[]    // One-to-many relation with Item
 }
 
 model Item {
   id         Int      @id @default(autoincrement())
   price      Int
-  menu_id    Int     // Foreign key for Menu
   bill_id    Int
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
-  bill       Bill     @relation("BillItems", fields: [bill_id], references: [id])
-  menu       Menu     @relation(fields: [menu_id], references: [id])  // Many-to-one relation with Menu
 }
 
 model Drawer {

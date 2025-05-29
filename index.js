@@ -7,6 +7,7 @@ const authRouter = require("./routes/auth-route");
 const userRouter = require("./routes/user-route");
 const drawerRouter = require("./routes/drawer-route");
 const menuRouter = require("./routes/menu-route");
+const billRoute = require("./routes/bill-route");
 const categoryRouter = require("./routes/category-route");
 const app = express();
 
@@ -21,6 +22,8 @@ app.use("/api", userRouter);
 app.use("/api", drawerRouter);
 app.use("/api", menuRouter);
 app.use("/api", categoryRouter);
+app.use("/api", billRoute);
+
 
 // Handle errors
 app.use(handleErrors);
